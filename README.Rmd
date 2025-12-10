@@ -1,5 +1,5 @@
 ---
-title: "The Cost of Completion: How Debt and Graduation Rates Intersect"
+title: "The Cost of Completion: How Student Debt, Earnings, and Graduation Outcomes Intersect"
 author: "Lexi Pachonphai"
 output: html_document
 date: "12/8/2025"
@@ -254,9 +254,18 @@ Majors with a high ROI either pay well, require relatively little borrowing, or 
 ```{r, message=FALSE}
 
 
-top_roi <- top_majors %>%
-arrange(desc(median_roi)) %>%
-slice_head(n = 20)
+top_roi <- field %>%
+  group_by(major) %>%
+  summarise(
+    median_earn = median(earnings_5yr, na.rm = TRUE),
+    median_debt = median(program_debt, na.rm = TRUE),
+    median_roi  = median(roi_earnings_to_debt, na.rm = TRUE),
+    n_programs  = n()
+  ) %>%
+  filter(n_programs >= 30, !is.na(median_roi)) %>%
+  arrange(desc(median_roi)) %>%
+  slice_head(n = 20)
+
 
 kable(
 top_roi,
@@ -339,7 +348,7 @@ n_institutions   = n()
 kable(
 inst_summary,
 digits = 2,
-caption = "Average graduation rate, repayment rate, and median debt by institutional control."
+caption = "Average of institutional median debt, graduation rate, and repayment rate by institutional control."
 )
 
 
@@ -352,7 +361,7 @@ These averages suggest:
 
 - Private nonprofit colleges often have higher median debt but also relatively strong graduation and repayment outcomes.
 
-- Private for-profit colleges show a worrying combination of high debt and lower graduation/repayment rates, consistent with prior critiques of that sector.
+- Private for-profit colleges show a worrying combination of similar debt levels to publics but much lower graduation and repayment rates, consistent with prior critiques of that sector.
 
 
 
@@ -380,8 +389,7 @@ theme_minimal()
 ```
 
 
-Within each sector, the relationship between debt and graduation rate is moderate and often generally positive: colleges where students borrow more sometimes also have higher completion rates, possibly because they are more selective or more expensive institutions with strong support systems. However, the for-profit sector shows clusters of schools with relatively high debt and low graduation rates.
-
+In the public and private nonprofit sectors, the relationship between debt and graduation rate is moderately positive: colleges where students borrow more sometimes also have higher completion rates… In the for-profit sector, the relationship is essentially flat, with many schools showing relatively high debt and low graduation rates.
 
 
 #### Correlation and simple regression
@@ -412,7 +420,7 @@ summary(model_grad)
 
 
 
-Overall, the correlation between debt and graduation rate is moderate. Once we control for sector, the estimated effect of additional debt on graduation is modest, and the sector differences themselves are much larger than the effect of debt alone.
+Overall, the correlation between debt and graduation rate is moderate. Once we control for sector, the estimated effect of additional debt on graduation is positive but not huge, and sector differences remain important even after accounting for debt.
 
 
 ### 2.3 Debt vs repayment rate
@@ -491,8 +499,7 @@ cor_large_repay
 
 ```
 
-The correlations change only slightly, suggesting that our earlier conclusions are not driven solely by tiny institutions.
-
+The correlations increase somewhat but the qualitative story is similar, suggesting our earlier conclusions are not driven solely by tiny institutions.
 
 ### 3.2 Log-transforming debt
 
@@ -513,47 +520,8 @@ summary(model_grad_log)
 The estimated effect of log_debt on graduation remains small relative to sector differences, and the qualitative pattern (weak relationship between debt and outcomes within sector) still holds.
 
 
-### 3.3 Alternative ROI metric
 
-For majors, I experimented with an alternative ROI measure: earnings minus annualized debt payment. Using typical federal repayment calculators and the College Scorecard glossary, a standard 10-year repayment at 5% interest implies roughly a 0.13 payment factor per dollar of debt.
-
-
-
-
-```{r, message=FALSE}
-
-payment_factor <- 0.13
-
-field_roi_alt <- field %>%
-mutate(
-annual_debt_payment = program_debt * payment_factor,
-roi_net_earnings    = earnings_5yr - annual_debt_payment
-)
-
-alt_top <- field_roi_alt %>%
-group_by(major) %>%
-summarise(
-median_net = median(roi_net_earnings, na.rm = TRUE),
-n_programs = n()
-) %>%
-filter(n_programs >= 30) %>%
-arrange(desc(median_net)) %>%
-slice_head(n = 20)
-
-kable(
-alt_top,
-digits = 0,
-caption = "Top 20 majors by net earnings after approximated annual debt payment (≥ 30 programs)."
-)
-
-
-```
-
-The resulting ranking is highly correlated with the simpler earnings-to-debt ratio, confirming that our chosen ROI metric is not driving the results by itself.
-
-
-
-### 3.4 Limitations
+### 3.3 Limitations
 
 There are several reasons to treat these findings cautiously:
 
@@ -574,7 +542,7 @@ These caveats make it risky to use the results as “rankings” for high-stakes
 
 From the most recent College Scorecard cohorts, I find that:
 
-- Majors matter, bachelor’s programs in engineering, computer science, and some health fields consistently show the highest median earnings and strong earnings-to-debt ratios. Students in these majors typically repay their loans from relatively high early-career incomes.
+- Majors matter, bachelor’s programs in engineering, computer science, and some health fields consistently show the highest median earnings and strong earnings-to-debt ratios. These majors combine high earnings with relatively moderate debt, suggesting that students in these fields are well-positioned to repay their loans.
 
 - Debt alone is not destiny. At the institutional level, higher median debt is not strongly associated with lower graduation or repayment rates once we account for sector. In fact, some high-debt institutions (especially selective private nonprofits) have excellent outcomes.
 
