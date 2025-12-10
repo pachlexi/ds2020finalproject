@@ -1,7 +1,7 @@
 ---
 title: "The Cost of Completion: How Student Debt, Earnings, and Graduation Outcomes Intersect"
 author: "Lexi Pachonphai"
-output: html_document
+output: github_document
 date: "12/8/2025"
 ---
 
