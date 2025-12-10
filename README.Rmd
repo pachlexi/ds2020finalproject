@@ -456,7 +456,7 @@ However, there remain clusters of institutions—particularly in the for-profit 
 
 
 
-#### Scepticism and Sensitivity Checks
+## Scepticism and Sensitivity Checks
 
 Because College Scorecard is observational and complicated, it is important to be sceptical of simple stories. In this section I show several checks to see whether our key patterns (high-ROI majors, sector differences, and debt–outcome relationships) are robust.
 
