@@ -431,7 +431,7 @@ theme_minimal()
 
 In the public and private nonprofit sectors, the relationship between
 debt and graduation rate is moderately positive: colleges where students
-borrow more sometimes also have higher completion rates… In the
+borrow more sometimes also have higher completion rates. In the
 for-profit sector, the relationship is essentially flat, with many
 schools showing relatively high debt and low graduation rates.
 
@@ -522,8 +522,8 @@ in the public and private nonprofit sectors. A plausible interpretation
 is that more selective or resource-rich colleges both charge more and
 lead to earnings that support repayment.
 
-However, there remain clusters of institutions—particularly in the
-for-profit sector—with high debt and low repayment, which are potential
+However, there remain clusters of institutions, particularly in the
+for-profit sector, with high debt and low repayment, which are potential
 “high-debt, low-payoff” risks for students.
 
 ## Scepticism and Sensitivity Checks
