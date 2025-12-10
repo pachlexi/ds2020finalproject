@@ -15,33 +15,6 @@ library(scales)
 
 ```
 
-```{r, message=FALSE}
-
-library(tidyverse)
-
-# Read the original huge file
-inst_raw_big <- read_csv(
-  "Most-Recent-Cohorts-Institution.csv",
-  na = c("NULL", "PrivacySuppressed")
-)
-
-# Keep only the columns you actually use
-inst_small <- inst_raw_big %>%
-  transmute(
-    INSTNM,
-    CONTROL,
-    DEBT_MDN,
-    C150_4_POOLED_SUPP,
-    RPY_3YR_RT_SUPP,
-    UGDS
-  )
-
-# Write the smaller CSV
-write_csv(inst_small, "institution_for_project.csv")
-
-```
-
-
 
 
 
