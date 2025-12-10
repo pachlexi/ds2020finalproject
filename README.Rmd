@@ -59,7 +59,7 @@ For this project I use two CSV files:
 
   - Institution-level outcomes (one row per college).
 
-  - Includes graduation rates, median debt, repayment rates, and control type (public private).
+  - Includes graduation rates, median debt, repayment rates, and control type (public, private nonprofit, private for-profit).
 
 
 
@@ -96,7 +96,7 @@ According for this dataset, key variables in the field-of-study file include:
 
 - EARN_MDN_5YR – median annual earnings 5 years after completion.
 
-- DEBT_ALL_STGP_ANY_MDN – median cumulative debt for students who completed the program.
+- DEBT_ALL_PP_EVAL_MDN – median cumulative debt used in the Scorecard’s program-level evaluation metric (includes all borrowers who left the program).
 
 
 I restrict attention to bachelor’s-level programs and convert earnings and debt to numeric values. I also construct an ROI-style metric, defined as earnings divided by debt.
@@ -287,7 +287,7 @@ ggplot(top_majors2,
 ```
 
 
-This view shows that some majors, for example, Pharmacy and several engineering fields combine high earnings with moderate debt, resulting in very high ROI. Others achieve high earnings but also require substantial borrowing, which lowers the ROI relative to cheaper programs with only slightly lower pay. Some high-earning majors (e.g., Dentistry, Medicine) have missing program-level debt data in this file, so they do not receive an ROI value or appear in the scatterplot.
+This view shows that some majors, for example, technology and engineering fields combine high earnings with moderate debt, resulting in very high ROI. Others achieve high earnings but also require substantial borrowing, which lowers the ROI relative to cheaper programs with only slightly lower pay. Some high-earning majors (e.g., Dentistry, Medicine) have missing program-level debt data in this file, so they do not receive an ROI value or appear in the scatterplot.
 
 
 
@@ -380,7 +380,7 @@ theme_minimal()
 ```
 
 
-Within each sector, the relationship between debt and graduation rate is weak and often slightly positive: colleges where students borrow more sometimes also have higher completion rates, possibly because they are more selective or more expensive institutions with strong support systems. However, the for-profit sector shows clusters of schools with relatively high debt and low graduation rates.
+Within each sector, the relationship between debt and graduation rate is moderate and often generally positive: colleges where students borrow more sometimes also have higher completion rates, possibly because they are more selective or more expensive institutions with strong support systems. However, the for-profit sector shows clusters of schools with relatively high debt and low graduation rates.
 
 
 
@@ -412,7 +412,7 @@ summary(model_grad)
 
 
 
-Overall, the correlation between debt and graduation rate is small. Once we control for sector, the estimated effect of additional debt on graduation is modest, and the sector differences themselves are much larger than the effect of debt alone.
+Overall, the correlation between debt and graduation rate is moderate. Once we control for sector, the estimated effect of additional debt on graduation is modest, and the sector differences themselves are much larger than the effect of debt alone.
 
 
 ### 2.3 Debt vs repayment rate
