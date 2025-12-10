@@ -452,7 +452,7 @@ theme_minimal()
 
 In contrast to the noisy graduation-rate relationship, repayment rates tend to be higher at institutions where students borrow more, especially in the public and private nonprofit sectors. A plausible interpretation is that more selective or resource-rich colleges both charge more and lead to earnings that support repayment.
 
-However, there remain clusters of institutions—particularly in the for-profit sector—with high debt and low repayment, which are potential “high-debt, low-payoff” risks for students.
+However, there remain clusters of institutions, particularly in the for-profit sector, with high debt and low repayment, which are potential “high-debt, low-payoff” risks for students.
 
 
 
