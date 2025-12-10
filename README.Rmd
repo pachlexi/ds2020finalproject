@@ -49,13 +49,13 @@ All data come from the College Scorecard website (collegescorecard.ed.gov). I do
 
 For this project I use two CSV files:
 
-1. Most-Recent-Cohorts-Field-of-Study.csv
+1. field_of_study.csv
 
   - Program-level outcomes (major within institution).
   
   - Includes earnings, debt, and enrollment for each field of study at a given college.
 
-2. Most-Recent-Cohorts-Institution.csv
+2. institution.csv
 
   - Institution-level outcomes (one row per college).
 
@@ -69,10 +69,6 @@ College Scorecard uses "NULL" and "PrivacySuppressed" for missing or suppressed 
 
 
 ```{r, message=FALSE}
-
-# field_raw <- read_csv("field_of_study.csv")
-# inst_raw <- read_csv("institution.csv")
-
 
 field_raw <- read_csv(
 "field_of_study.csv",
@@ -92,7 +88,7 @@ na = c("NULL", "PrivacySuppressed")
 
 
 
-According to the data dictionary and existing GitHub projects on the same dataset, key variables in the field-of-study file include:
+According for this dataset, key variables in the field-of-study file include:
 
 - CIPDESC – text description of the major.
 
@@ -118,8 +114,7 @@ field <- field_raw %>%
   ) %>%
   # keep rows where we actually have earnings data
   filter(!is.na(earnings_5yr))
-  # if you only want bachelor’s programs, you can also filter on CREDLEV here
-  # filter(CREDLEV == 3)   # or whatever code is “Bachelor’s” in your docs
+  filter(CREDLEV == 3)   
 
 ```
 
