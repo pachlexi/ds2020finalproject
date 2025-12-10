@@ -113,9 +113,10 @@ field <- field_raw %>%
     roi_earnings_to_debt = earnings_5yr / program_debt
   ) %>%
   # keep rows where we actually have earnings data
-  filter(!is.na(earnings_5yr))
-  filter(CREDLEV == 3)   
-
+    filter(
+    !is.na(earnings_5yr),
+    CREDLEV == 3          # restrict to bachelor's programs
+  )
 ```
 
 
