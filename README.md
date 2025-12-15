@@ -51,8 +51,8 @@ choices and sensitivity checks. The report proceeds as follows:
 ### Sources and Files
 
 All data come from the College Scorecard website
-(collegescorecard.ed.gov). I downloaded the Most Recent Data zip files
-on December 8, 2025.
+(<https://collegescorecard.ed.gov/data>). I downloaded the Most Recent
+Data zip files on December 8, 2025.
 
 For this project I use two CSV files:
 

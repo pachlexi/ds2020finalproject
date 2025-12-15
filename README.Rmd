@@ -45,7 +45,7 @@ The goal is not to produce a definitive ranking, but instead to explore the data
 
 ### Sources and Files
 
-All data come from the College Scorecard website (collegescorecard.ed.gov). I downloaded the Most Recent Data zip files on December 8, 2025.
+All data come from the College Scorecard website (https://collegescorecard.ed.gov/data). I downloaded the Most Recent Data zip files on December 8, 2025.
 
 For this project I use two CSV files:
 
